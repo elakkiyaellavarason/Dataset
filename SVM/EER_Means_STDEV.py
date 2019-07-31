@@ -1,23 +1,21 @@
 import pandas as pd
 
-test_percentage = 0
+test_percentage = [15,24,30,40]
 
-for i in range(0,5):
-
-    test_percentage = test_percentage + 10
-
-    Data = pd.read_csv('C:\\Users\\ee244\\Desktop\\PhD\\Analysis\\SVM\Evaluation\\Session 1\\session 1 results\\equal samples\\Probability_scores\\Horizontal_NumberofsamplesTraining' + str(test_percentage) +'_WalkingSession1VsWalkingSession2.csv', header=None)
-
-    Data.columns = ['User', 'Scenario', 'AUC' , 'EER','threshold' ]
-
-    Mean_Score =Data['EER'].mean()
-    Standard_Dev = Data['EER'].std()
-    Standard_error = Data['EER'].sem()
-
-    print( str(Standard_error))
-    #print(str(test_percentage) + ":" + str(Standard_Dev))
+for i in range(0,4):
 
 
 
+    Data = pd.read_csv('C:\\Users\\ee244\\Desktop\\PhD\\Analysis\\SVM\\Evaluation\\Session 1\\session 1 results\\equal samples\\Probability_scores\\Naive Bayes\\session 2\\Vertical_NumberofsamplesTraining' + str(test_percentage[i]) + '_SittingVsBus.csv', header=None)
+
+    Data.columns = ['1', '2' , '3','4' ]
+
+    MEdian = Data['3'].median()
+    MEan = Data['3'].mean()
+    std = Data['3'].std()
+    sem = Data['3'].sem()
+
+
+    print(str(round(MEan, 2))  )
 
 

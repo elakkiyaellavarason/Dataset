@@ -152,17 +152,7 @@ for user in range(102,150):
     X_s3_test = scaler.fit(X_s3_test).transform(X_s3_test)
 
 
-    ######################## PCA Selection #########################
 
-    # Make an instance of the Model
-    pca = PCA(.95)
-    # Fit PCA on training set
-    pca.fit(X_train)
-    # Apply the mapping (transform) to both the training set and the test set.
-    X_train = pca.transform(X_train)
-    X_test = pca.transform(X_test)
-
-    ######################## PCA Selection end ####################
 
 
 
@@ -176,14 +166,17 @@ for user in range(102,150):
     score = svclassifier.score(X_test,y_test)
 
     ################################# ROC Curve ##################################
-
+    #print('PCA Accuracy' + str(accuracy_score(y_test, y_pred)))
+    #print(pca.explained_variance_ratio_)
 
 
     # PREDICT PROBABILITY SCORE = 2D ARRAY FOR EACH PREDICTION
     probas_ = svclassifier.fit(X_train, y_train).predict_proba(X_test)
     # Compute ROC curve and area the curve
     print("X_test length:",len(X_test))
+    print("probas_ length:", len(probas_))
     print(probas_[:, 1])
+    print('y_test',y_test)
     fpr, tpr, thresholds = roc_curve(y_test, probas_[:, 1])
 
     eer = brentq(lambda x: 1. - x - interp1d(fpr, tpr)(x), 0., 1.)
@@ -274,14 +267,14 @@ for user in range(102,150):
     #myData_s3 = [user, 3, s3_tn, s3_fp, s3_fn, s3_tp, accuracy_rate_s3]
 
    
-    myFile = open('C:\\Users\\ee244\\Desktop\\PhD\\Analysis\\SVM\\Evaluation\\Session 1\\session 1 results\\equal samples\\Probability_scores\\Numberofswipes10_Test75_Horizontal_PCA.csv', 'a')
-    with myFile:
-       writer = csv.writer(myFile)
-       writer.writerows([myData_s1])
+    #myFile = open('C:\\Users\\ee244\\Desktop\\PhD\\Analysis\\SVM\\Evaluation\\Session 1\\session 1 results\\equal samples\\Probability_scores\\Numberofswipes10_Test75_Horizontal_PCA.csv', 'a')
+   # with myFile:
+   #    writer = csv.writer(myFile)
+  #     writer.writerows([myData_s1])
        #writer.writerows([myData_s2])
        #writer.writerows([myData_s3])
 
-    myFile.close()
+  #  myFile.close()
 
 #plt.show()
-plt.savefig('C:\\Users\\ee244\\Desktop\\PhD\\Analysis\\SVM\\Evaluation\\Session 1\\session 1 results\\equal samples\\ROC Curves\\Scenario 1\\Horizontal\\ROC_Session1_Scenario1_Horizontal_Numberofsamples10_PCA.jpg',dpi = 100)
+#plt.savefig('C:\\Users\\ee244\\Desktop\\PhD\\Analysis\\SVM\\Evaluation\\Session 1\\session 1 results\\equal samples\\ROC Curves\\Scenario 1\\Horizontal\\ROC_Session1_Scenario1_Horizontal_Numberofsamples10_PCA.jpg',dpi = 100)

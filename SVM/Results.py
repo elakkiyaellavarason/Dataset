@@ -9,13 +9,13 @@ import seaborn as sns
 from sklearn.preprocessing import StandardScaler
 import csv
 
-test_percentage = 70
+test_percentage = 10
 
 for i in range(0,4):
 
-    test_percentage = test_percentage +5
+    test_percentage = test_percentage +10
     print(test_percentage)
-    Data = pd.read_csv('C:\\Users\\ee244\\Desktop\\PhD\\Analysis\\SVM\\Evaluation\\Session 1\\session 2 results\\Imposter more\\Accuracy_Scores_TestPercentage' + str(test_percentage) +'_Vertical_Linear_Session2.csv')
+    Data = pd.read_csv('C:\\Users\\ee244\\Desktop\\PhD\\Analysis\\SVM\\Evaluation\\Session 1\\session 2 results\\Imposter more\\Horizontal_NumberofsamplesTraining' + str(test_percentage) +'_SittingVsSittingSession2.csv')
 
     Data.columns=['User',	'Scenario',	'True Negative',	'False Positive',	'False Negative',	'True Positive',	'Accuracy Score']
 
